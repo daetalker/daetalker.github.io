@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    DAE-Talker
+  </title>
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background: rgb(255, 255, 255) no-repeat fixed top left;
+      font-family:'Open Sans', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- paper title -->
+            <h2 style="font-size:30px;">
+                DAE-Talker: High Fidelity Speech-Driven Talking Face Generation with Diffusion Autoencoder
+            </h2>
+
+            <hr>
+            
+            <!-- authors -->
+            <h6>Chenpeng Du<sup>1</sup>,
+            Qi Chen<sup>1</sup>,
+            Tianyu He<sup>2</sup>,
+            Xu Tan<sup>2</sup>,
+            Xie Chen<sup>1</sup>,
+            Kai Yu<sup>1</sup>,
+            Sheng Zhao<sup>3</sup>,
+            Jiang Bian<sup>2</sup>
+                 <br>
+                 <br>
+            <p> <sup>1</sup> X-LANCE Lab, Department of Computer Science and Engineering, Shanghai Jiao Tong University
+              <sup>2</sup> Microsoft Research Asia
+              <sup>3</sup> Microsoft Cloud+AI
+                <br>
+            </p>
+            
+<!--            &lt;!&ndash; links &ndash;&gt;-->
+<!--            <div class="row justify-content-center">-->
+<!--              &lt;!&ndash; link to paper &ndash;&gt;-->
+<!--              <div style="margin: 5px;">-->
+<!--                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://arxiv.org/abs/2212.05005v2" role="button" target="_blank">-->
+<!--                <i class="fa fa-file"></i> -->
+<!--                Paper -->
+<!--                </a> </p>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; link to video &ndash;&gt;-->
+<!--              <div style="margin: 5px;">-->
+<!--                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://www.youtube.com/watch?v=O96iRTh5-a8" role="button" target="_blank">-->
+<!--                <i class="fa-brands fa-youtube"></i> -->
+<!--                Video-->
+<!--                </a> </p>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; link to code &ndash;&gt;-->
+<!--            </div>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+          <hr style="margin-top:0px">
+        </div>
+          <p class="text-justify">
+            While recent research has made significant progress in speech-driven talking face generation, the quality of the generated video still lags behind that of real recordings. One reason for this is the use of handcrafted intermediate representations like facial landmarks and 3DMM coefficients, which are designed based on human knowledge and are insufficient to precisely describe facial movements. Additionally, these methods require an external pretrained model for extracting these representations, whose performance sets an upper bound on talking face generation. To address these limitations, we propose a novel method called DAE-Talker that leverages data-driven latent representations obtained from a diffusion autoencoder (DAE). DAE contains an image encoder that encodes an image into a latent vector and a DDIM-based image decoder that reconstructs the image from it. We train our DAE on talking face video frames and then extract their latent representations as the training target for a Conformer-based speech2latent model. During inference, DAE-Talker first predicts the latents from speech and then generates the video frames with the image decoder in DAE from the predicted latents.
+This allows DAE-Talker to synthesize full video frames and produce natural head movements that align with the content of speech, rather than relying on a predetermined head pose from a template video. We also introduce pose modelling in speech2latent for pose controllability. Additionally, we propose a novel method for generating continuous video frames with the DDIM-based image decoder trained on individual frames, eliminating the need for modelling the joint distribution of consecutive frames directly. Our experiments show that DAE-Talker outperforms existing popular methods in lip-sync, video fidelity, and pose naturalness. We also conduct ablation studies to analyze the effectiveness of the proposed techniques and demonstrate the pose controllability of DAE-Talker.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+
+
+  <!-- demo -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Demo</h3>
+          <hr style="margin-top:0px">
+        </div>
+
+          <div  style="text-align:center"> <video width="70%" controls> <source src="resources/demo.mp4" type="video/mp4"> </video> </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+
+
+
+  <!-- method -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Method</h3>
+          <hr style="margin-top:0px">
+          <!-- image -->
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <div style="text-align:center">
+              <img src="resources/model.png" alt="teaser" class="img-responsive" width="100%"/>
+            </div>
+          </div>
+          <br>
+          <!-- text -->
+          <div>
+            <p class="text-justify">
+              DAE-Talker utilizes data-driven latent representations from a diffusion autoencoder. The training process involves two stages. We begin by training a DAE on video frames of talking faces, then we extract the latent representations and use them as the training target for a Conformer-based speech2latent model.
+              DAE contains an image encoder that encodes an image into a latent vector and a DDIM image decoder that reconstructs the image from it.
+              Latent prediction from speech is a sequence-to-sequence task, where the two sequences are monotonically aligned. We leverage the deep acoustic feature extracted by pretrained wav2vec 2.0 and build our speech2latent model based on the Conformer architecture, which utilizes a convolution layer, a speech encoder, a pose adaptor, a latent decoder and a linear projection layer. Both the speech encoder and latent decoder consist of several Conformer blocks, which is a variant of Transformer block that incorporates a convolution layer after each self-attention layer. This combination of the two layers allows for capturing both local and global context information.
+            </p>
+          </div>
+          <!-- image -->
+          <div class="row justify-content-center" style="align-items:center; display:flex;">
+            <div style="text-align:center">
+              <img src="resources/inference.png" alt="teaser" class="img-responsive" width="40%"/>
+            </div>
+          </div>
+          <br>
+          <!-- text -->
+          <div>
+            <p class="text-justify">
+                During inference, DAE-Talker first predicts the latents from speech and then generates the video frames with the image decoder in DAE from the predicted latents.
+                Rather than sampling various Gaussian noises to produce different frames, we propose to utilize a shared Gaussian noise to generate all video frames. This allows the DDIM's denoising process to initiate from a fixed point. Additionally, our speech2latent model is trained on sequence-level, with a global and local context-aware architecture, leading to a continuous predicted latent sequence. This continuity enables the ODE trajectory to change smoothly along different frames. As a result, we can produce continuous video frames with the DDIM image decoder, obviating the need to directly model the joint distribution of consecutive video frames.
+            </p>
+          </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+
+
+  <!-- citing -->
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>@article{du2023daetalker,
+  title={DAE-Talker: High Fidelity Speech-Driven Talking Face Generation with Diffusion Autoencoder},
+  author={Du, Chenpeng and Chen, Qi and He, Tianyu and Tan, Xu and Chen, Xie and Yu, Kai and Zhao, Sheng and Bian, Jiang},
+  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  year={2023}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
