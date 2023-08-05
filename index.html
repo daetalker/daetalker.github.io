@@ -54,12 +54,11 @@
             Jiang Bian<sup>2</sup>
                  <br>
                  <br>
-            <p> <sup>1</sup> X-LANCE Lab, Department of Computer Science and Engineering, Shanghai Jiao Tong University
-              <sup>2</sup> Microsoft Research Asia
-              <sup>3</sup> Microsoft Cloud+AI
-                <br>
+            <p> <sup>1</sup> X-LANCE Lab, Department of Computer Science and Engineering, Shanghai Jiao Tong University <br>
+              <sup>2</sup> Microsoft Research Asia <br>
+              <sup>3</sup> Microsoft Cloud+AI <br>
             </p>
-            
+            </h6>
             <!-- links -->
            <div class="row justify-content-center">
               <!-- link to paper -->
@@ -123,49 +122,7 @@ This allows DAE-Talker to synthesize full video frames and produce natural head 
   <br>
   <br>
 
-
-
-  <!-- method -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h3>Method</h3>
-          <hr style="margin-top:0px">
-          <!-- image -->
-          <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <div style="text-align:center">
-              <img src="resources/model.png" alt="teaser" class="img-responsive" width="100%"/>
-            </div>
-          </div>
-          <br>
-          <!-- text -->
-          <div>
-            <p class="text-justify">
-              DAE-Talker utilizes data-driven latent representations from a diffusion autoencoder. The training process involves two stages. We begin by training a DAE on video frames of talking faces, then we extract the latent representations and use them as the training target for a Conformer-based speech2latent model.
-              DAE contains an image encoder that encodes an image into a latent vector and a DDIM image decoder that reconstructs the image from it.
-              Latent prediction from speech is a sequence-to-sequence task, where the two sequences are monotonically aligned. We leverage the deep acoustic feature extracted by pretrained wav2vec 2.0 and build our speech2latent model based on the Conformer architecture, which utilizes a convolution layer, a speech encoder, a pose adaptor, a latent decoder and a linear projection layer. Both the speech encoder and latent decoder consist of several Conformer blocks, which is a variant of Transformer block that incorporates a convolution layer after each self-attention layer. This combination of the two layers allows for capturing both local and global context information.
-            </p>
-          </div>
-          <!-- image -->
-          <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <div style="text-align:center">
-              <img src="resources/inference.png" alt="teaser" class="img-responsive" width="40%"/>
-            </div>
-          </div>
-          <br>
-          <!-- text -->
-          <div>
-            <p class="text-justify">
-                During inference, DAE-Talker first predicts the latents from speech and then generates the video frames with the image decoder in DAE from the predicted latents.
-                Rather than sampling various Gaussian noises to produce different frames, we propose to utilize a shared Gaussian noise to generate all video frames. This allows the DDIM's denoising process to initiate from a fixed point. Additionally, our speech2latent model is trained on sequence-level, with a global and local context-aware architecture, leading to a continuous predicted latent sequence. This continuity enables the ODE trajectory to change smoothly along different frames. As a result, we can produce continuous video frames with the DDIM image decoder, obviating the need to directly model the joint distribution of consecutive video frames.
-            </p>
-          </div>
-      </div>
-    </div>
-  </section>
-  <br>
-  <br>
+  
 
 
   <!-- citing -->
